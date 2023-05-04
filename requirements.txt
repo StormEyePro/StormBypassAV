@@ -1,0 +1,6 @@
+paramiko==2.9.2
+six==1.16.0
+PyQt5==5.15.6
+PyInstaller==5.10.1
+tinyaes==1.0.4
+requests==2.27.1
