@@ -1,5 +1,7 @@
 # 风暴免杀
 
+工具介绍：
+
 ***
 
 ## 声明
@@ -36,6 +38,7 @@
 
 ```
 pip3 install -r requirements.txt
+python3 StormBypassAV.py
 ```
 
 2.支持普通和隐匿2种模式:
@@ -55,3 +58,4 @@ pip3 install -r requirements.txt
 
 
 5.实现了本地和网络分离免杀，由于shellcode每次生成的不一样，所以配置菜单中增加了SSH服务器，配置后可以自动将新生产的payload同步到web服务器上
+
