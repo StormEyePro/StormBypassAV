@@ -6,6 +6,10 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 payloadSaveFile=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))+os.sep+'temp'+os.sep+'PayloadFile'
+try:
+    os.makedirs(os.path.dirname(payloadSaveFile))
+except:
+    pass
 
 def writePayload(PAYLOAD_EXE):
     pe_payload = pefile.PE(PAYLOAD_EXE)
@@ -15,6 +19,7 @@ def writePayload(PAYLOAD_EXE):
     SizeOfHeaders=pe_payload.OPTIONAL_HEADER.SizeOfHeaders
     AddressOfEntryPoint=pe_payload.OPTIONAL_HEADER.AddressOfEntryPoint
     get_field_absolute_offset=pe_payload.OPTIONAL_HEADER.get_field_absolute_offset("ImageBase")
+
 
     with open(PAYLOAD_EXE, "rb") as h_payload:
         payload_data = h_payload.read().decode('latin1')

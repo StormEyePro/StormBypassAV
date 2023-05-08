@@ -254,7 +254,7 @@ def main(dic=dict()):
             None,
             None,
             False,
-            CREATE_SUSPENDED,
+            CREATE_SUSPENDED,               #dwCreationFlags：0x00000004的值，代表新进程的主线程处于挂起状态创建，在调用 ResumeThread 函数之前不会运行。
             None,
             None,
             byref(startup_info),

