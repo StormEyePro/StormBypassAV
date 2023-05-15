@@ -2,7 +2,7 @@
 
 工具介绍：https://blog.csdn.net/u013797594/article/details/130502682
 
-适用于红队、红蓝对抗的免杀工具。
+适用于红队的免杀工具。
 
 ***
 
@@ -65,6 +65,12 @@ python3 StormBypassAV.py
 
 
 
+6.已知bug：
+
+> 1.因为使用了动态导入，所以shellcode.py文件名中不能有多余的点号.  
+
+
+
 # 2023.5.15更新
 
 ***
@@ -90,3 +96,9 @@ defender：
 更新后无感知上线和执行命令，不过新增用户等高危操作依然不可用，需要结合其它技术。
 
 ![image-20230515122042417](https://dybimages.oss-cn-chengdu.aliyuncs.com/image-20230515122042417.png)
+
+VT：
+
+VT上有些厂家已经把pyinstaller打包的程序都当成病毒了，所以很难做到更低的免杀率：
+
+![image-20230515124901099](https://dybimages.oss-cn-chengdu.aliyuncs.com/image-20230515124901099.png)
