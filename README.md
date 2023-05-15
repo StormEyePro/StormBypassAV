@@ -2,19 +2,23 @@
 
 工具介绍：https://blog.csdn.net/u013797594/article/details/130502682
 
+适用于红队、红蓝对抗的免杀工具。
+
 ***
 
 ## 声明
 
 ***
 
-1.工具仅限于学习和技术研究。
+1.本工具仅限于学习和技术研究，不可用于任何非法用途。
 
 
 
 ## 效果
 
 ***
+
+> 建议修改CS默认特征增强免杀效果，下面的测试使用了malleable-c2项目中的CS配置文件来修改默认的CS特征。
 
 1.使用进程镂空（傀儡进程）winlogon.exe，Defender仅提示病毒威胁选择重启，但不会主动杀掉镂空的winlogon.exe，实现稳定上线。
 
@@ -59,3 +63,30 @@ python3 StormBypassAV.py
 
 5.实现了本地和网络分离免杀，由于shellcode每次生成的不一样，所以配置菜单中增加了SSH服务器，配置后可以自动将新生产的payload同步到web服务器上
 
+
+
+# 2023.5.15更新
+
+***
+
+发现部分杀软已经能查杀，更新一波。
+
+360鲲鹏，无感知上线和执行普通命令，新增用户等高危命令会告警，需要结合其它技术绕过。
+
+![image-20230515122955343](https://dybimages.oss-cn-chengdu.aliyuncs.com/image-20230515122955343.png)
+
+![image-20230515122503214](https://dybimages.oss-cn-chengdu.aliyuncs.com/image-20230515122503214.png)
+
+defender：
+
+使用进程镂空winlogon.exe，结合malleable-c2项目修改CS默认特征，可以无感知上线，执行shell命令会被defender告警病毒，但不主动查杀，只提示重启：
+
+![image-20230515120833534](https://dybimages.oss-cn-chengdu.aliyuncs.com/image-20230515120833534.png)
+
+火绒：
+
+发现火绒把变量名当成静态特征查杀。。。增加了一些随机特性绕过火绒的静态特征查杀，火绒已经会对进程镂空winlogon.exe进行查杀，但镂空其他进程不会查杀，遇到火绒可以直接使用普通模式的那几个shellcode加载器。
+
+更新后无感知上线和执行命令，不过新增用户等高危操作依然不可用，需要结合其它技术。
+
+![image-20230515122042417](https://dybimages.oss-cn-chengdu.aliyuncs.com/image-20230515122042417.png)

