@@ -83,6 +83,12 @@ python3 StormBypassAV.py
 
 ![image-20230515122503214](https://dybimages.oss-cn-chengdu.aliyuncs.com/image-20230515122503214.png)
 
+360核晶物理机上测试：
+
+和火绒差不多的效果，可以稳定上线执行普通命令，执行添加用户等会被告警。
+
+![image-20230517183614085](https://dybimages.oss-cn-chengdu.aliyuncs.com/image-20230517183614085.png)
+
 defender：
 
 使用进程镂空winlogon.exe，结合malleable-c2项目修改CS默认特征，可以无感知上线，执行shell命令会被defender告警病毒，但不主动查杀，只提示重启：
